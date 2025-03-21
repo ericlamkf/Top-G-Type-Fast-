@@ -1,0 +1,307 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-gradient: linear-gradient(132deg, rgb(250, 170, 0) 0.00%, rgb(237, 19, 19) 50.00%, rgb(213, 74, 255) 100.00%);
+    --text-color: rgb(43, 43, 43);
+    --container-color: aliceblue;
+    --input-color: rgb(255, 192, 192);
+    --top-bar: rgb(245, 73, 73);
+    --bottom-bar: rgb(250, 203, 51);
+    --highlight-color: yellow;
+    --dark-color: rgb(111, 111, 111);
+}
+
+.dark-theme {
+    --highlight-color: rgb(70, 52, 201);
+    --top-bar: rgb(112, 11, 184);
+    --bottom-bar: rgb(89, 96, 242);
+    --dark-color: #19212e;
+    background: var(--dark-color);
+    background-image: radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 35%), radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 35%), radial-gradient(circle at 50% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 40%);
+    --text-color: rgb(213, 213, 213);
+    --container-color: #18263c;
+    --input-color: #667a9b;
+}
+
+body {
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(132deg, rgb(250, 170, 0) 0.00%, rgb(237, 19, 19) 50.00%, rgb(213, 74, 255) 100.00%);
+}
+
+.container {
+    position: relative;
+    background: var(--container-color);
+    padding: 30px 50px;
+    border-radius: 30px;
+    text-align: center;
+    width: 80vw;
+    box-shadow: 10px 10px 15px 5px rgba(0, 0, 0, 0.5);
+    overflow-x: hidden;
+}
+
+@keyframes error {
+    0% {
+        transform: translate(10px, 5px);
+    }
+
+    25% {
+        transform: translate(3px, 0);
+    }
+
+    50% {
+        transform: translate(8px, -2px);
+    }
+
+    75% {
+        transform: translate(-3px, 5px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.container.error {
+    animation: error 0.5s linear;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0.5rem;
+    background-color: var(--top-bar);
+    top: 0;
+    left: 0;
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0.5rem;
+    background-color: var(--bottom-bar);
+    bottom: 0;
+    left: 0;
+}
+
+.container .title h1 {
+    position: relative;
+    font-weight: 800;
+    color: var(--text-color);
+    display: inline;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+@media screen and (max-width:800px) {
+    .container .title h1 {
+        font-size: 1rem;
+    }
+
+    .title i {
+        font-size: 0.5rem;
+    }
+
+    .title p {
+        font-size: 0.8rem;
+    }
+}
+
+#time {
+    color: var(--text-color);
+}
+
+@media screen and (max-width:500px) {
+    .container .title h1 {
+        font-size: 1rem;
+    }
+
+    #time {
+        font-size: 1rem;
+    }
+
+    .quote span {
+        font-size: 1rem;
+    }
+}
+
+.toggle-theme {
+    position: absolute;
+    right: 3%;
+    bottom: 6%;
+    background-color: var(--dark-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.toggle-theme i {
+    color: rgb(236, 213, 40);
+    transition: color 0.4s ease, transform 0.2s ease;
+}
+
+.toggle-theme:hover i {
+    color: rgb(139, 114, 14);
+    transform: rotate(-45deg);
+}
+
+.container .title p {
+    padding-top: 30px;
+    font-weight: 100;
+    color: var(--text-color);
+}
+
+.title h1:before,
+.title h1:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.title h1:before {
+    width: 100%;
+    background-color: var(--container-color);
+    animation: typing 5s infinite steps(20);
+}
+
+.title h1:after {
+    width: 0.125rem;
+    background-color: var(--text-color);
+    animation: typing 5s infinite steps(20), blinking 500ms infinite linear;
+}
+
+@keyframes typing {
+
+    60%,
+    80% {
+        left: 100%;
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes blinking {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.quote {
+    font-size: 2rem;
+    font-weight: 500;
+    padding: 30px 0;
+}
+
+.quote span {
+    color: var(--text-color);
+}
+
+
+.form {
+    padding-bottom: 10px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.form h2 {
+    font-size: 1.5rem;
+}
+
+.form input {
+    display: none;
+    border: none;
+    background-color: var(--input-color);
+    font-size: 1rem;
+    border-radius: 10px;
+    outline: none;
+    padding: 20px 30px;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: all 0.5s ease;
+}
+
+.form input:focus {
+    padding: 10px 20px;
+}
+
+@keyframes movingBG {
+
+    0%,
+    100% {
+        background-position: 50% 100%;
+    }
+
+    50% {
+        background-position: 0% 50%;
+    }
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 900;
+    background: linear-gradient(132deg, rgb(250, 170, 0) 0.00%, rgb(237, 19, 19) 50.00%, rgb(213, 74, 255) 100.00%);
+    border-radius: 30px;
+    color: rgb(234, 234, 234);
+    cursor: pointer;
+    background-size: 300%;
+    margin: 20px;
+    transition: all 0.4s ease;
+}
+
+button:hover {
+    scale: 1.1;
+    animation: movingBG 2s infinite;
+}
+
+.highlight {
+    background-color: var(--highlight-color);
+    transform: rotate(2deg);
+}
+
+.title i {
+    font-size: 2rem;
+    padding-right: 10px;
+    color: var(--text-color);
+}
+
+.finish h1 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    animation: bounceIn 0.5s ease-in-out;
+}
+
+@keyframes bounceIn {
+    from {
+        transform: translateY(-3px) scale(1.2);
+        color: brown;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        color: black;
+    }
+}
