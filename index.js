@@ -20,7 +20,7 @@ toggleBtn.addEventListener("click", () => {
 quoteExample = [
     "Life is like riding a bicycle. To keep your balance, you must keep moving.",
     "Be the change that you wish to see in the world.",
-    "It always seems impossible until it’s done.",
+    "It always seems impossible until it's done.",
     "Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work.",
     "Optimism is the faith that leads to achievement. Nothing can be done without hope and confidence.",
     "The unexamined life is not worth living.",
